@@ -46,3 +46,10 @@ func main() {
 	fmt.Println(ToUpper1(str)) // str로 넣어서 rst로 반환되고 변환된 값이 출력된다.
 	fmt.Println(ToUpper2(str))
 }
+
+// 문자열은 불변이다. why? 안정성을 위해서
+
+// ex ) str1 := "Hello"
+//			str2 := str1
+//			str3 := str3    - 셋다 str1이 가진 Data 타입의 주소값을 가지게 되어서
+//												값을 출력할 때, 그 메모리 주소값으로 가서 같은 값을 출력하게 된다.
