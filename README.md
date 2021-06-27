@@ -1,1 +1,1 @@
-# Go-studey
+# Go-study
