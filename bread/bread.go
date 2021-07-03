@@ -83,8 +83,7 @@ func main() {
 	fmt.Scanln(&rsv)
 
 	// 숫자에 따른 잼을 발라준다.
-
-	if true {
+	if true { // 잼을 바르게 된다면
 		if rsv == 0 {
 			PutJamOnBreadStrawBerry(breads[0], spoon)
 			sandwitch := MakeSandwitch(breads)
@@ -100,7 +99,7 @@ func main() {
 		} else {
 			fmt.Println("잼이 없습니다")
 		}
-		fmt.Println("샌드위치를 완성했습니다.")
+		fmt.Println("샌드위치를 완성했습니다.") // 결과값을 출력한다.
 	}
 
 	/*
