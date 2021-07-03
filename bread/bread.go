@@ -83,20 +83,24 @@ func main() {
 	fmt.Scanln(&rsv)
 
 	// 숫자에 따른 잼을 발라준다.
-	if rsv == 0 {
-		PutJamOnBreadStrawBerry(breads[0], spoon)
-		sandwitch := MakeSandwitch(breads)
-		fmt.Println(sandwitch.val)
-	} else if rsv == 1 {
-		PutJamOnBreadOrangeJam(breads[0], spoon)
-		sandwitch := MakeSandwitch(breads)
-		fmt.Println(sandwitch.val)
-	} else if rsv == 2 {
-		PutJamOnBreadPeanutsJam(breads[0], spoon)
-		sandwitch := MakeSandwitch(breads)
-		fmt.Println(sandwitch.val)
-	} else {
-		fmt.Println("잼이 없습니다")
+
+	if true {
+		if rsv == 0 {
+			PutJamOnBreadStrawBerry(breads[0], spoon)
+			sandwitch := MakeSandwitch(breads)
+			fmt.Println(sandwitch.val)
+		} else if rsv == 1 {
+			PutJamOnBreadOrangeJam(breads[0], spoon)
+			sandwitch := MakeSandwitch(breads)
+			fmt.Println(sandwitch.val)
+		} else if rsv == 2 {
+			PutJamOnBreadPeanutsJam(breads[0], spoon)
+			sandwitch := MakeSandwitch(breads)
+			fmt.Println(sandwitch.val)
+		} else {
+			fmt.Println("잼이 없습니다")
+		}
+		fmt.Println("샌드위치를 완성했습니다.")
 	}
 
 	/*
