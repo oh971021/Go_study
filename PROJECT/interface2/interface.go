@@ -94,13 +94,13 @@ type PlaceinBusan struct { // 부산 내에 있는 장소 객체 생성
 
 //=====================================================//
 
-// 접시에 사시미를 얹는 작업
+// 선정한 지역으로 이동한다.
 func (d *PlaceinBusan) GoingPlace(place Place) {
 	user := place.ChoicePlace()
 	d.van += user.String()
 }
 
-// 접시에 썰어놓은 사시미를 하나씩 얹는 작업
+// 지역 선정
 func (d *PlaceinBusan) String() string {
 	return "This is " + d.van
 }
