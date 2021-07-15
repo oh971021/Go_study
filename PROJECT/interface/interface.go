@@ -6,12 +6,12 @@ import "fmt"
 
 // 회뜰때 활용할 나이프.
 type MakeSashimi interface {
-	Knife() string
+	Dish() string
 }
 
 // 모듬회에 들어갈 물고기를 가져온다.
 type GatheringSashimi interface {
-	GetOneFish() MakeSashimi
+	GetOneDish() MakeSashimi
 }
 
 // 사시미가 될 객체 생성
@@ -21,12 +21,12 @@ type Sashimi struct {
 
 // 셰프가 물고기를 가져와서 회를 뜬다.
 func (s *Sashimi) SliceSashimi(gatheringsashimi GatheringSashimi) {
-	shef := gatheringsashimi.GetOneFish()
-	s.sashimi += shef.Knife()
+	shef := gatheringsashimi.GetOneDish()
+	s.sashimi += shef.Dish()
 }
 
 // 접시에 회를 얹는다.
-func (s *Sashimi) Knife() string {
+func (s *Sashimi) Dish() string {
 	return "plat " + s.sashimi
 }
 
@@ -34,14 +34,14 @@ func (s *Sashimi) Knife() string {
 type Sekkoshi struct {
 }
 
-func (k *Sekkoshi) GetOneFish() MakeSashimi {
+func (k *Sekkoshi) GetOneDish() MakeSashimi {
 	return &PutOnSekkoshi{}
 }
 
 type PutOnSekkoshi struct {
 }
 
-func (p *PutOnSekkoshi) Knife() string {
+func (p *PutOnSekkoshi) Dish() string {
 	return " + Sekkoshi"
 }
 
@@ -51,14 +51,14 @@ func (p *PutOnSekkoshi) Knife() string {
 type Salmon struct {
 }
 
-func (k *Salmon) GetOneFish() MakeSashimi {
+func (k *Salmon) GetOneDish() MakeSashimi {
 	return &PutOnSekkoshi{}
 }
 
 type PutOnSalmon struct {
 }
 
-func (p *PutOnSalmon) Knife() string {
+func (p *PutOnSalmon) Dish() string {
 	return " + Salmon"
 }
 
@@ -68,14 +68,14 @@ func (p *PutOnSalmon) Knife() string {
 type Gwaga struct {
 }
 
-func (k *Gwaga) GetOneFish() MakeSashimi {
+func (k *Gwaga) GetOneDish() MakeSashimi {
 	return &PutOnGwaga{}
 }
 
 type PutOnGwaga struct {
 }
 
-func (p *PutOnGwaga) Knife() string {
+func (p *PutOnGwaga) Dish() string {
 	return " + Gwaga"
 }
 
@@ -85,14 +85,14 @@ func (p *PutOnGwaga) Knife() string {
 type WooLuck struct {
 }
 
-func (k *WooLuck) GetOneFish() MakeSashimi {
+func (k *WooLuck) GetOneDish() MakeSashimi {
 	return &PutOnWooLuck{}
 }
 
 type PutOnWooLuck struct {
 }
 
-func (p *PutOnWooLuck) Knife() string {
+func (p *PutOnWooLuck) Dish() string {
 	return " + WooLuck"
 }
 
@@ -139,7 +139,7 @@ func (g *GotoGwanganri) Choice() string {
 // -------------------------------------------- //
 
 // -------------- 지역 광안리 추가 ------------ //
-type Haeundae struct { // 광안리 객체 생성
+type Haeundae struct { // 해운대 객체 생성
 }
 
 func (g *Haeundae) PlaceinBusan() ChoicePlace {
