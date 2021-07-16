@@ -1,89 +1,45 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type RawLearning interface {
+// ======================== 전송 인터페이스 ======================= //
+// 인터페이스 생성 (메소드를 가진 친구)
+type OneMethod interface { //
 	String() string
 }
 
-type Raw interface {
-	MakeRaw() RawLearning
+// 메소드를 가진 친구 (가장 먼저 시작되는 친구)
+type UseMethod_1 interface {
+	Transmission() OneMethod // 전송 메소드
 }
 
-type AIprogram struct {
-	val string
+type Program_1 struct {
+	programs string
 }
 
-func (d *AIprogram) PlusRaw(raw Raw) {
-	AI := raw.MakeRaw()
-	d.val += AI.String()
+// 프로그램을 실행하면 전송 메소드를 실행하겠다.
+func (p *Program_1) StartProgram(usemethod UseMethod_1) {
+	start := usemethod.Transmission()
+	p.programs += start.String() // 전송된 파일 저장
 }
 
-func (d *AIprogram) String() string {
-	return "AI Learned " + d.val
+func (p *Program_1) String() string {
+	return p.programs
 }
 
-type RawOne struct {
+// 전송자
+type Trans struct {
 }
 
-func (f *RawOne) MakeRaw() RawLearning {
-	return &RawOneLearnig{}
+func (t1 *Trans) Transmission() OneMethod {
+	return &UseTransmission{}
 }
 
-type RawOneLearnig struct {
+type UseTransmission struct {
 }
 
-func (s *RawOneLearnig) String() string {
-	return "RawOne"
+func (t2 *UseTransmission) String() string {
+	return "전송 된 데이터 : "
 }
 
-type RawTwo struct {
-}
-
-func (f *RawTwo) MakeRaw() RawLearning {
-	return &RawTwoLearning{}
-}
-
-type RawTwoLearning struct {
-}
-
-func (s *RawTwoLearning) String() string {
-	return " + RawTwo"
-}
-
-type RawThree struct {
-}
-
-func (f *RawThree) MakeRaw() RawLearning {
-	return &RawThreeLearning{}
-}
-
-type RawThreeLearning struct {
-}
-
-func (s *RawThreeLearning) String() string {
-	return " + RawThree"
-}
-
-func main() {
-	fmt.Println("Raw Learning Program")
-
-	fmt.Println()
-	fmt.Println("AI is Learning Raw")
-
-	fmt.Println()
-	// AI가 법을 배웁니다 //
-	AI := &AIprogram{}
-	gwanga := &RawOne{}
-	salmon := &RawThree{}
-	sekkoshi := &RawTwo{}
-
-	AI.PlusRaw(gwanga)
-	AI.PlusRaw(salmon)
-	AI.PlusRaw(sekkoshi)
-
-	fmt.Println(AI)
-	// =================== //
-}
+// ============================================================== //
