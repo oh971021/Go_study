@@ -23,7 +23,7 @@ func main() {
 				// 만약 2 ~ 9 배수가 맞다면 무한 루프 탈출
 				for i := 2; i < 9; i++ {
 					if r%i == 0 {
-						fmt.Printf("랜덤함수 값: %d , %d의 배수", r, i)
+						fmt.Printf("랜덤함수 값: %d 이고 %d의 배수\n", r, i)
 						flag = false
 						break
 					} else {

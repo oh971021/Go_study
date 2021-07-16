@@ -4,46 +4,86 @@ import (
 	"fmt"
 )
 
-func double(a interface{}) interface{} {
-	x, ok := a.(int)
-	if ok {
-		return 2 * x
-	}
-
-	y, ok := a.(string)
-	if ok {
-		return fmt.Sprintf("%s%s", y, y)
-	}
-
-	z, ok := a.(bool)
-	if ok {
-		z = !z
-		return z
-	}
-
-	return nil
+type RawLearning interface {
+	String() string
 }
 
-/*
-func double(a interface{}) interface{} {
-
-    switch a.(type) {
-    case int:
-        return 2*a.(int)
-    case string:
-        return fmt.Sprintf("%s%s",a,a)
-    case bool:
-        return !a.(bool)
-    }
-
-    return nil
+type Raw interface {
+	MakeRaw() RawLearning
 }
-*/
+
+type AIprogram struct {
+	val string
+}
+
+func (d *AIprogram) PlusRaw(raw Raw) {
+	AI := raw.MakeRaw()
+	d.val += AI.String()
+}
+
+func (d *AIprogram) String() string {
+	return "AI Learned " + d.val
+}
+
+type RawOne struct {
+}
+
+func (f *RawOne) MakeRaw() RawLearning {
+	return &RawOneLearnig{}
+}
+
+type RawOneLearnig struct {
+}
+
+func (s *RawOneLearnig) String() string {
+	return "RawOne"
+}
+
+type RawTwo struct {
+}
+
+func (f *RawTwo) MakeRaw() RawLearning {
+	return &RawTwoLearning{}
+}
+
+type RawTwoLearning struct {
+}
+
+func (s *RawTwoLearning) String() string {
+	return " + RawTwo"
+}
+
+type RawThree struct {
+}
+
+func (f *RawThree) MakeRaw() RawLearning {
+	return &RawThreeLearning{}
+}
+
+type RawThreeLearning struct {
+}
+
+func (s *RawThreeLearning) String() string {
+	return " + RawThree"
+}
+
 func main() {
-	a := []interface{}{42, "Hello", false}
+	fmt.Println("Raw Learning Program")
 
-	for _, v := range a {
-		fmt.Println(v)
-		fmt.Println(double(v))
-	}
+	fmt.Println()
+	fmt.Println("AI is Learning Raw")
+
+	fmt.Println()
+	// AI가 법을 배웁니다 //
+	AI := &AIprogram{}
+	gwanga := &RawOne{}
+	salmon := &RawThree{}
+	sekkoshi := &RawTwo{}
+
+	AI.PlusRaw(gwanga)
+	AI.PlusRaw(salmon)
+	AI.PlusRaw(sekkoshi)
+
+	fmt.Println(AI)
+	// =================== //
 }
