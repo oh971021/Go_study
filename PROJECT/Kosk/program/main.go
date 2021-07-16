@@ -39,7 +39,16 @@ type UseTransmission struct {
 }
 
 func (t2 *UseTransmission) String() string {
-	return "전송 된 데이터 : "
+	return "데이터가 전송 되었습니다."
 }
 
 // ============================================================== //
+
+func main() {
+	// 프로그램
+	trnasprogram := &Program_1{}
+	trans := &Trans{}
+
+	trnasprogram.StartProgram(trans)
+	fmt.Print(trnasprogram)
+}
