@@ -1,3 +1,1 @@
-# Go-study
-
-My study note by Golang
+# My study note by Golang
