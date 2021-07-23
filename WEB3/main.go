@@ -1,11 +1,11 @@
 package main
 
 import (
-	"WEB3/myapp"
 	"net/http"
+	"web/myapp"
 )
 
 func main() {
-
-	http.ListenAndServe(":3000", myapp.NewHttpHandler()) // mux대신 myapp.NewHttpHandler()
+	http.ListenAndServe(":3000", myapp.NewHttpHandler())
+	// myapp 에서 handler 를 만든다.
 }

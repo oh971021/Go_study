@@ -13,29 +13,30 @@ type User struct {
 	// json 형식이 아니다. (golang != json)
 
 	// `` = 어노테이션(Annotation)을 붙혀주는 것 = json 형식으로 표준을 잡겠다
-	FirstName string    `json:"first_name"`
+	FirstName string    `json:"first_name"` //어노테이션)(Annotaion) 설명을 붙히는것
 	LastName  string    `json:"last_name"`
 	Email     string    `json:"email"`
 	CreatedAt time.Time `json:"created_at"`
 }
 
-type fooHandler struct{}
+func indexHandler(w http.ResponseWriter, r *http.Request) { //
+	fmt.Fprint(w, "Hello Index!") // Fprint은 w값에 "Hello World" 값을 주어서 프린팅해라는 의미
+}
 
-func (f *fooHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+type fooHandler struct{} //인스턴스 생성
+
+func (f *fooHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) { //ServeHTTP 인터페이스 구현
 	user := new(User)
 	err := json.NewDecoder(r.Body).Decode(user)
 	if err != nil {
-		w.WriteHeader(http.StatusAccepted)
-		fmt.Fprint(w, err)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprint(w, "Hello Foo!")
 		return
 	}
 	user.CreatedAt = time.Now()
 
-	data, _ := json.Marshal(user)
-
-	// 헤더 작성하기
-	w.Header().Add("content-type", "applicatioon/json")
-	w.Header().Add("testing", "I'm testing respnsewritier")
+	data, _ := json.Marshal(user) //인터페이스, JSON형식 결과값은 바이트 어레이
+	//w.Header().Add("content-type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprint(w, string(data))
 }
@@ -43,21 +44,18 @@ func (f *fooHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func barHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
 	if name == "" {
-		name = "World"
+		name = "bar"
 	}
 	fmt.Fprintf(w, "Hello %s!", name)
 }
 
-func main() {
-	mux := http.NewServeMux() //Mux 라우터를 통한 구현! Mux 클래스를 만들어주라
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello World")
-	})
+func NewHttpHandler() http.Handler {
+	mux := http.NewServeMux() //라우터 클래스 만든다. mux 등록
+	mux.HandleFunc("/", indexHandler)
 
 	mux.HandleFunc("/bar", barHandler) //mux
 
-	mux.Handle("/foo", &fooHandler{}) //mux
-
-	http.ListenAndServe(":3000", mux) // mux 라우트 등록
+	mux.Handle("/foo", &fooHandler{}) // mux
+	return mux
 	//요 함수를 통해 웹서버 간단제작.
 }
