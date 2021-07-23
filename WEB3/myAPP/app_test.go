@@ -23,8 +23,10 @@ func TestIndexPathHandler(t *testing.T) {
 	// asser 패키지를 쓰는이유 : 해당 패키지의 테스트 함수가 테스트하는데 유용하다.
 	assert := assert.New(t)
 
-	res := httptest.NewRecorder()
-	req := httptest.NewRequest("GET", "/", nil) // 실제 response를 사용하지 않고 테스팅 응신방법
+	res := httptest.NewRecorder() // 실제 response를 사용하지 않고 테스팅 응신방법
+	// nil := pointer 초기값을 셋팅 해주기 위해서 입력해준다.
+	// 이자리에 mux 도 들어 갈 수 있는데, 라우팅을 할 때 사용.
+	req := httptest.NewRequest("GET", "/", nil)
 
 	// mux : "/" 경로를 타겟 해서 라우팅(분배), 랜더링 부분
 	// mux : 라우터 (분배의 기능, 경로 타겟팅) - 경로에 맞춰서 분배를 해주어라.
