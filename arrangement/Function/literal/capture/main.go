@@ -1,6 +1,6 @@
 /*
 	== 캡쳐 ==
-	 - 캡쳐는 call by reference
+	 - call by reference
 */
 
 package main
