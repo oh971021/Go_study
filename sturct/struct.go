@@ -14,6 +14,7 @@ type Student struct {
 // 다른 곳에서 사용 할 이름을 정해줌.
 type Students []Student
 
+// 인터페이스가 가져야 하는 3가지 함수
 func (s Students) Len() int           { return len(s) }
 func (s Students) Less(i, j int) bool { return s[i].Age < s[j].Age }
 func (s Students) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
