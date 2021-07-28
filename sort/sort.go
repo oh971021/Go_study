@@ -19,10 +19,13 @@ func (s Friend) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 func main() {
 	p := []Person{
 		{"준석", 25},
+		{"호민", 55},
 		{"민영", 28},
 		{"수용", 26},
+		{"예리", 42},
 		{"배훈", 23},
 		{"성민", 25},
+		{"문성", 31},
 	}
 
 	fmt.Println("Before sort : ", p)

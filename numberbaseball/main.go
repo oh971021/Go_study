@@ -125,7 +125,7 @@ func InputNumbers() [3]int {
 		if !success {
 			continue // 여기서 컨티뉴를 하면 아래의 브레이크를 건너뛰고 다시 for문을 돌린다.
 		}
-		break // 이건 무한루피 for {} 를 빠져나오는 브레이크다.
+		break // 이건 무한루프 for {} 를 빠져나오는 브레이크다.
 	}
 	rst[0], rst[2] = rst[2], rst[0] // 위의 for문에서 뒤섞인 숫자를 재정렬 해준다.
 	// fmt.Println(rst) // =================== 사용자가 입력해서 나온 출력값을 지워준다.

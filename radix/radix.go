@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	// 배열 정렬하기
 	arr := [10]int{0, 5, 2, 9, 1, 8, 5, 8, 3, 7}
 	temp := [10]int{}
 
