@@ -16,6 +16,7 @@ type User struct {
 	FirstName string    `json:"first_name"` //어노테이션)(Annotaion) 설명을 붙히는것
 	LastName  string    `json:"last_name"`
 	Email     string    `json:"email"`
+	Team      string    `json:"team"`
 	CreatedAt time.Time `json:"created_at"`
 }
 
