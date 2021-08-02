@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"web/myapp"
+	"web3/myapp"
 )
 
 func main() {
