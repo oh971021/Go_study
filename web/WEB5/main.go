@@ -1,7 +1,7 @@
 package main
 
 import (
-	"WEB5/myapp"
+	"Go-study/web/WEB5/myapp"
 	"net/http"
 )
 
