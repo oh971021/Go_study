@@ -20,6 +20,7 @@ func initOpMap() {
 	opMap["-"] = del
 	opMap["*"] = mul
 	opMap["/"] = div
+	opMap["**"] = pow
 }
 
 func add(a, b int) int {
@@ -35,10 +36,18 @@ func mul(a, b int) int {
 }
 
 func div(a, b int) int {
-	return a - b
+	return a / b
 }
 
-func calculate(op string, a, b int) int {
+func pow(a, b int) int {
+	res := 1
+	for i := 0; i < b; i++ {
+		res *= a
+	}
+	return res
+}
+
+func Calculate(op string, a, b int) int {
 	if v, ok := opMap[op]; ok {
 		return v(a, b)
 	}
@@ -84,11 +93,19 @@ func test() {
 		return
 	}
 
+	if !testCalculate("Test9", "**", 2, 3, 8) {
+		return
+	}
+
+	if !testCalculate("Test9", "**", 3, 3, 27) {
+		return
+	}
+
 	fmt.Println("Success!!")
 }
 
 func testCalculate(testcase, op string, a, b, expected int) bool {
-	o := calculate(op, a, b)
+	o := Calculate(op, a, b)
 	if o != expected {
 		fmt.Printf("%s Test1 Failed!! expected:%d , output:%d\n", testcase, expected, o)
 		return false
