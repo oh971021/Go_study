@@ -1,16 +1,15 @@
 package myapp
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
-	"strconv"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+//---1단계 TestIndex  NewHandler()등록빌드 검증테스팅---//
 
 func TestIndex(t *testing.T) {
 	assert := assert.New(t)
@@ -19,12 +18,14 @@ func TestIndex(t *testing.T) {
 	defer ts.Close()
 
 	resp, err := http.Get(ts.URL)
-	assert.NoError(err)
+	assert.NoError(err) //에러가 없어야 한다
 	assert.Equal(http.StatusOK, resp.StatusCode)
+	//--2단계 Hello World 데이터 테스팅 검사
 	data, _ := ioutil.ReadAll(resp.Body)
 	assert.Equal("Hello World", string(data))
 }
 
+//--------2단계 TestUsers 등록 검사------------//
 func TestUsers(t *testing.T) {
 	assert := assert.New(t)
 
@@ -35,46 +36,35 @@ func TestUsers(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
 	data, _ := ioutil.ReadAll(resp.Body)
-	assert.Contains(string(data), "Get UserInfo")
+	assert.Contains(string(data), "Get UserInfo") //Get UserInfo포함하고 있으면 pass 아니면 fail
 }
 
+// ---------3단계 TestGetUserInfo Get id 검사----------//
 func TestGetUsersInfo(t *testing.T) {
 	assert := assert.New(t)
 
 	ts := httptest.NewServer(NewHandler())
 	defer ts.Close()
 
-	resp, err := http.Get(ts.URL + "/users/89")
+	// --- id 1 --- //
+	resp, err := http.Get(ts.URL + "/users/1")
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
+
 	data, _ := ioutil.ReadAll(resp.Body)
-	assert.Contains(string(data), "No User Id:89")
+	assert.Contains(string(data), "User id:1")
+
 }
 
-func TestCreateUsers(t *testing.T) {
-	assert := assert.New(t)
+// func TestSelf(t *esting.T {
+// 	assert := assert.Newt)
 
-	ts := httptest.NewServer(NewHandler())
-	defer ts.Close()
+// 	ts := httptest.NewServer(NewHander))
+// 	defer ts.Clos()
 
-	resp, err := http.Post(ts.URL+"/users", "application/json",
-		strings.NewReader(`{"first_name":"junseok", "last_name":"oh", "email":"oh971021@gmail.com"`))
-	assert.NoError(err)
-	assert.Equal(http.StatusCreated, resp.StatusCode)
-
-	user := new(User)
-	err = json.NewDecoder(resp.Body).Decode(user)
-	assert.NoError(err)
-	assert.NotEqual(0, user.ID)
-
-	id := user.ID
-	resp, err = http.Get(ts.URL + "/users/" + strconv.Itoa(id))
-	assert.NoError(err)
-	assert.Equal(http.StatusOK, resp.StatusCode)
-
-	user2 := new(User)
-	err = json.NewDecoder(resp.Body).Decode(user2)
-	assert.NoError(err)
-	assert.Equal(user.ID, user2.ID)
-	assert.Equal(user.Firstname, user2.Firstname)
-}
+// 	resp, err := htp.Get(ts.URL + "/sel")
+// 	assert.NoError(er)
+// 	assert.Equal(htt.StatusOK, resp.StatusCoe)
+// 	data, _ := ioutil.ReadAll(resp.Boy)
+// 	assert.Contains(string(data), "Self") //Get UserInfo포함하고 있으면 pass 아니면 fil
+// }
