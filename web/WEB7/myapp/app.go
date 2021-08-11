@@ -23,7 +23,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 
 func getUserInfoHandeler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"])
+	id, err := strconv.Atoi(vars["id"]) // vars는 strinf이므로Atoi로 int정수형으로 바꾸면 첫번째 인티저형id와,두번째err가 나온다
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprint(w, err)
@@ -38,7 +38,7 @@ func getUserInfoHandeler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	data, _ := json.Marshal(user)
+	data, _ := json.Marshal(user) // json.Marshal는 Go밸류를 JSON 문자열로 변환-->슬라이스나 바이트 기반으로 go value를 반환
 	fmt.Fprint(w, string(data))
 }
 
@@ -53,8 +53,8 @@ type User struct {
 
 func createUserHandler(w http.ResponseWriter, r *http.Request) {
 	user := new(User)
-	err := json.NewDecoder(r.Body).Decode(user)
-	if err != nil {
+	err := json.NewDecoder(r.Body).Decode(user) //decode는 JSON문자열 go value반환 ,encode는 반대 go value바를 JSON문자열
+	if err != nil {                             // 에러가 있따면 잘못된 JSON형식
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprint(w, err)
 		return
@@ -78,8 +78,8 @@ func NewHandler() http.Handler {
 	mux := mux.NewRouter()
 
 	mux.HandleFunc("/", indexHandler)
-	mux.HandleFunc("/users", userHandler).Methods("GET")
-	mux.HandleFunc("/users", createUserHandler).Methods("POST")
+	mux.HandleFunc("/users", userHandler).Methods("GET")        // w.r
+	mux.HandleFunc("/users", createUserHandler).Methods("POST") // encode.decode
 	mux.HandleFunc("/users/{id:[0-9]+}", getUserInfoHandeler)
 	return mux
 }
