@@ -1,3 +1,7 @@
+/*
+	8월 12일 -- 성적 저장 프로그램 예제 (구름에듀)
+*/
+
 package main
 
 import "fmt"
