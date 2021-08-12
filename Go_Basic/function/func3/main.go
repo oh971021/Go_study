@@ -7,30 +7,27 @@ import (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
 	MakeNumber := func() int {
-		result := rand.Intn(100)
+		rand.Seed(time.Now().UnixNano())
+		result := rand.Intn(50)
 		return result
 	}
-
+	result := MakeNumber()
+loop1:
 	for {
-
 		var answer int
-		result := MakeNumber()
 		fmt.Print("랜덤 숫자를 맞춰보세요 : ")
 
 		fmt.Scan(&answer)
 		if answer == result {
-			fmt.Println("정답입니다.")
+			break
 		} else if answer > result {
-			fmt.Printf("%d 보다 큽니다.\n", answer)
-			fmt.Println("다시 입력해주세요.")
-			continue
+			fmt.Println("DOWN")
+			goto loop1
 		} else if answer < result {
-			fmt.Printf("%d 보다 작습니다.\n", answer)
-			fmt.Println("다시 입력해주세요.")
-			continue
+			fmt.Println("UP")
+			goto loop1
 		}
-		fmt.Println("다시 입력해주세요.")
 	}
+	fmt.Println("정답입니다.")
 }
