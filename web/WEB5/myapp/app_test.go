@@ -53,7 +53,6 @@ func TestGetUsersInfo(t *testing.T) {
 
 	data, _ := ioutil.ReadAll(resp.Body)
 	assert.Contains(string(data), "User id:1")
-
 }
 
 // func TestSelf(t *esting.T {
