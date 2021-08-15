@@ -13,6 +13,17 @@ func (p Point) print() int {
 	return p.x + p.y
 }
 
+// Call by Value, Call by Reference 를 알아보자.
+func (p *Point) add(a int) {
+	p.x += a
+	p.y += a
+}
+
+func (p Point) Mul(a int) {
+	p.x *= a
+	p.y *= a
+}
+
 func main() {
 	// x = 3 , y = 4 각각 대입시켜주고, 변수에 객체를 넣어준다.
 	// 객체를 대입시킨 p 는 인스턴스가 된다.
@@ -20,4 +31,14 @@ func main() {
 	// 거기서 Method 를 호출해서 기능을 사용하고,
 	// Print 해준다.
 	fmt.Println(p.print())
+
+	// 이 친구는 포인터타입의 CbR 라서 원본값에도 영향을 끼친다.
+	p.add(10)
+
+	// 이 친구는 변수타입의 CbV 라서 원본값에 영향을 끼치지 않는다.
+	p.Mul(10)
+
+	// 그래서 출력 값을 예상해보면 Call by Reference 로 접근한 add() 함수만 적용되서
+	// 3 + 10 , 4 + 10 해서 13, 14 가 출력 될 듯하다.
+	fmt.Println(p.x, p.y)
 }
