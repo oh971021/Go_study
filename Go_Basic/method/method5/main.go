@@ -22,6 +22,7 @@ func (p *Point) add(a int) {
 func (p Point) Mul(a int) {
 	p.x *= a
 	p.y *= a
+	// 얘는 이 함수에서만 적용 된다. 즉, 원본엔 영향을 끼치지 못했다.
 }
 
 func main() {
