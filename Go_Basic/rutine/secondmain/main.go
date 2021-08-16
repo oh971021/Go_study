@@ -12,6 +12,7 @@ func sigma(start, end int, c chan int) {
 	for i := start; i <= end; i++ {
 		sum += i
 	}
+	fmt.Println("sigma")
 	c <- sum
 }
 
@@ -23,6 +24,7 @@ func main() {
 	go sigma(1, 100, c)
 	// 거기에 101 부터 200 까지 더한다.
 	go sigma(101, 200, c)
+	fmt.Println("main")
 	a, b = <-c, <-c
 	fmt.Println(a + b)
 }
