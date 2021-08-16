@@ -50,3 +50,5 @@ func main() {
 
 	fmt.Println("3개의 쓰레드로 돌린 count :", count)
 }
+
+// 출처 : https://kamang-it.tistory.com/entry/Go19%EA%B3%A0%EB%A3%A8%ED%8B%B4%EA%B3%BC-%EC%B1%84%EB%84%90%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EA%B8%B0%ED%99%94%EB%A5%BC-%EC%99%84%EC%84%B1%ED%95%98%EB%8A%94%EA%B0%80?category=752251
