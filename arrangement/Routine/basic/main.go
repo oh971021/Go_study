@@ -24,5 +24,6 @@ func main() {
 	go PrintHangul()
 	go PrintNumbers()
 
+	// 쓰레드가 끝날 때 까지 기다려주기 위해서 Sleep
 	time.Sleep(3 * time.Second)
 }
