@@ -18,6 +18,8 @@ func main() {
 	spoon := &sync.Mutex{}
 
 	go diningProblem("A", fork, spoon, "포크", "수저")
+	// 데드락 해결하기 위해 spoon을 먼저 잡으면 쓰레드 실행하도록 만듬
+	// go diningProblem("A", spoon, fork, "수저", "포크")
 	go diningProblem("B", spoon, fork, "수저", "포크")
 	wg.Wait()
 }
