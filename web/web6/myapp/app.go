@@ -22,10 +22,16 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUserInfoHandeler(w http.ResponseWriter, r *http.Request) {
+	// 여기서 id값을 string으로 출력한다.
 	vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"]) // vars는 strinf이므로Atoi로 int정수형으로 바꾸면 첫번째 인티저형id와,두번째err가 나온다
+	// 근데 id는 Query에서 int type으로 사용하기 때문에 int로 바꿔준다.
+	// vars는 strinf이므로Atoi로 int정수형으로 바꾸면 첫번째 인티저형id와,두번째err가 나온다
+	id, err := strconv.Atoi(vars["id"])
+	// 변환이 잘 되지 않았따면
 	if err != nil {
+		// 배드리퀘스트 = 400 을 보내준다.
 		w.WriteHeader(http.StatusBadRequest)
+		// 그리고 화면에 400을 찍어주고, error 내용을 출력한다.
 		fmt.Fprint(w, err)
 		return
 	}
