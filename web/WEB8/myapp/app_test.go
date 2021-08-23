@@ -114,12 +114,14 @@ func TestDeleteUser(t *testing.T) {
 	assert.Contains(string(data), "Deleted User Id:1")
 }
 
+// ----------------------------- test updateUserHandler ------------------------------ //
 func TestUpdateUser(t *testing.T) {
 	assert := assert.New(t)
 
 	ts := httptest.NewServer(NewHandler())
 	defer ts.Close()
 
+	// ------------------------------ ID 지정 방법 ----------------------------- //
 	req, _ := http.NewRequest("PUT", ts.URL+"/users",
 		strings.NewReader(`{"id":1, "first_name":"updated", "last_name":"update", "email":"update@gmail.com"}`))
 	resp, err := http.DefaultClient.Do(req)
@@ -127,7 +129,9 @@ func TestUpdateUser(t *testing.T) {
 	assert.Equal(http.StatusOK, resp.StatusCode)
 	data, _ := ioutil.ReadAll(resp.Body)
 	assert.Contains(string(data), "Update User id:1")
+	// ------------------------------------------------------------------------- //
 
+	// ------------------------------- ID 갱신 --------------------------------- //
 	resp, err = http.Post(ts.URL+"/users", "application/json",
 		strings.NewReader(`{"first_name":"junseok", "last_name":"oh", "email":"oh971021@gmail.com"}`))
 	assert.NoError(err)
@@ -137,13 +141,16 @@ func TestUpdateUser(t *testing.T) {
 	err = json.NewDecoder(resp.Body).Decode(user)
 	assert.NoError(err)
 	assert.NotEqual(0, user.ID)
+	// ------------------------------------------------------------------------- //
 
+	// ----------------------------- ID 입력 방법 ------------------------------ //
 	updateStr := fmt.Sprintf(`{"id":%d, "first_name":"updated"}`, user.ID)
 	req, _ = http.NewRequest("PUT", ts.URL+"/users",
 		strings.NewReader(updateStr))
 	resp, err = http.DefaultClient.Do(req)
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
+	// ------------------------------------------------------------------------- //
 
 	updateUser := new(User)
 	err = json.NewDecoder(resp.Body).Decode(updateUser)
@@ -153,3 +160,5 @@ func TestUpdateUser(t *testing.T) {
 	assert.Equal(user.LastName, updateUser.LastName)
 	assert.Equal(user.Email, updateUser.Email)
 }
+
+// -------------------------------------------------------------------------------------- //
