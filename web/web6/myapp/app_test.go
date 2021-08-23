@@ -117,23 +117,42 @@ func TestDeleteUser(t *testing.T) {
 	assert.Contains(string(data), "No User Id:1")
 
 	//[등록] user map id 1을 [등록]하는 부분, Post전송방식
+	//----Post로 보냈을 때 users에 POST방식전송, 정보는 Json 방식으로 전송한다
 	resp, err = http.Post(ts.URL+"/users", "application/json",
+		// 스트링값을 Json형식의 body에서 읽어온다
 		strings.NewReader(`{"first_name":"junseok", "last_name":"oh", "email":"oh971021@gmail.com"}`))
 	assert.NoError(err)
 	assert.Equal(http.StatusCreated, resp.StatusCode)
 
+	// -----------------------------post 전송방식--------------------------- //
+
 	//---위 POST방식 Json 정보를 서버가 user정보를 받아서 user정보를 리턴하는 부분
+	// Post 전송 방식에서는 항상 URL 경로 뒤의 문자열/id값 을 반환할 때, 항상 인스턴스로 생성해서 반환한다.
+	// 요 친구의 구조체는 resp안에서 타고 들어가서, app.go의 User Struct를 불러온다.
 	user := new(User)
+
+	// ----- user id값이 재대로 등록되어있는지 확인한다. ----- //
+
 	err = json.NewDecoder(resp.Body).Decode(user) //서버가 보낸 데이터를 읽어온다 = 매개변수 입력
 	assert.NoError(err)                           //아무런 문제err가 없다.
-	assert.NotEqual(0, user.ID)                   //user ID
 
+	// user.ID 가 기록이 되어있으면 pass, 기록이 되어있지 않으면 Fail
+	assert.NotEqual(0, user.ID) //user ID
+
+	// --------------------------------------------------------------------- //
+
+	// delete 메소드를 생성
 	req, _ = http.NewRequest("DELETE", ts.URL+"/users/1", nil)
 	resp, err = http.DefaultClient.Do(req)
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
+
+	// body 내용을 읽어서 가져온다.
 	data, _ = ioutil.ReadAll(resp.Body)
 	log.Print(string(data))
+
+	// data에 User Id:1 을 제거하고 아래 메세지가 떴으면 Pass, 안떳으면 fail
+	// 위의 Delete에서 잘 지워졌다면 pass가 뜬다.
 	assert.Contains(string(data), "Deleted User Id:1")
 }
 
