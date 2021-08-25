@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// Open이라는 함수를 사용한다. 첫번째로 드라이버명 (우리는 mysql 사용)
-	// 두번째로는 Connection
+	// 두번째로는 Connection사용
 	db, err := sql.Open("mysql", "root:pwd@tcp(127.0.0.1:3306)/testdb")
 	if err != nil {
 		log.Fatal(err)
