@@ -118,7 +118,7 @@ func updateUserHandler(w http.ResponseWriter, r *http.Request) {
 		// 잘 들어간 것이 확인 된다면 Header에 StatusOK을 찍어주고
 		w.WriteHeader(http.StatusOK)
 		// Update User ID: {id[]}를 출력해준다.
-		fmt.Fprint(w, "Update User id:", updateUser.ID)
+		fmt.Fprint(w, "No User id:", updateUser.ID)
 		return
 	}
 

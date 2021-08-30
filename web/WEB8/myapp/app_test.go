@@ -129,7 +129,7 @@ func TestUpdateUser(t *testing.T) { // Put전송 방식은 Update로 반환받�
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
 	data, _ := ioutil.ReadAll(resp.Body)
-	assert.Contains(string(data), "Update User id:1")
+	assert.Contains(string(data), "No User id:1")
 	// ------------------------------------------------------------------------- //
 
 	// ------------------------------- ID 갱신 --------------------------------- //
