@@ -37,7 +37,7 @@ func TestUsers(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)
 	data, _ := ioutil.ReadAll(resp.Body)
-	assert.Contains(string(data), "Get UserInfo")
+	assert.Equal(string(data), "No Users")
 }
 
 func TestGetUsersInfo(t *testing.T) {
@@ -115,7 +115,7 @@ func TestDeleteUser(t *testing.T) {
 }
 
 // ----------------------------- test updateUserHandler ------------------------------ //
-func TestUpdateUser(t *testing.T) {
+func TestUpdateUser(t *testing.T) { // Put전송 방식은 Update로 반환받는다.
 	assert := assert.New(t)
 
 	ts := httptest.NewServer(NewHandler())
@@ -124,6 +124,7 @@ func TestUpdateUser(t *testing.T) {
 	// ------------------------------ ID 지정 방법 ----------------------------- //
 	req, _ := http.NewRequest("PUT", ts.URL+"/users",
 		strings.NewReader(`{"id":1, "first_name":"updated", "last_name":"update", "email":"update@gmail.com"}`))
+	// Do(req) : Do(Method) = "Put" 메소드를 정의
 	resp, err := http.DefaultClient.Do(req)
 	assert.NoError(err)
 	assert.Equal(http.StatusOK, resp.StatusCode)

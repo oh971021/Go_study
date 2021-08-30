@@ -18,7 +18,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func userHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Get UserInfo by /users/{id}")
+	if len(userMap) == 0 {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, "No Users")
+		return
+	}
 }
 
 func getUserInfoHandeler(w http.ResponseWriter, r *http.Request) {
@@ -122,6 +126,8 @@ func updateUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	// 각각의 정보에 해당하는 매개값(id)를 통해 출력값(body)을 갱신해준다.
 	// Data가 잘 들어가면 StatusOK~~ data를 출력해준다.
+
+	// ---- Client 요청시 비워있지 않은 경우만 변환한다 ---- //
 	if updateUser.FirstName != "" {
 		user.FirstName = updateUser.FirstName
 	}
@@ -132,6 +138,7 @@ func updateUserHandler(w http.ResponseWriter, r *http.Request) {
 		user.Email = updateUser.Email
 	}
 	// Header에는 Type과 Json 형식을 사용하겠다고 입력해준다.
+	userMap[updateUser.ID] = user // userMap에서 ID가 존재하면 ID를 변경해준다. user는 포인터타입이므로 바꿀필요가없다.
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	data, _ := json.Marshal(user)
