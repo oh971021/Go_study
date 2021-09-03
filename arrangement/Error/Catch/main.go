@@ -14,7 +14,7 @@
 	- SEH는 성능문제가 있고, 에러를 먹어버리는 문제가 있다.
 */
 
-// Go 에서는 Error도 항상 반환한다.
+// Go 에서는 Error도 항상 반환한다..
 package main
 
 import (
