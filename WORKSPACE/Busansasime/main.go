@@ -52,7 +52,7 @@ func (f *Flatfish) Getonedish() Dishofsashomi {
 type MakeFlatfishSashimi struct{}
 
 func (f *MakeFlatfishSashimi) String() string {
-	return " + Flatfish Sashimi"
+	return " + Flatfish SashimI"
 }
 
 //-------------------------------실행 부분-------------------------------//
