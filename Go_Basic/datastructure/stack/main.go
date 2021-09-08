@@ -51,6 +51,7 @@ func main() {
 	s.Push(&Node{5})
 
 	fmt.Println(s)
+	fmt.Println(s)
 
 	// 5개 데이터 pop
 	fmt.Println(s.Pop())
