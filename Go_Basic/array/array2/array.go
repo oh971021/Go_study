@@ -8,6 +8,6 @@ func main() {
 	slice := []int{1, 3, 4, 1, 3, 4, 5}
 
 	fmt.Println(slice)
-
+	fmt.Printf("%v", slice)
 	fmt.Println(array)
 }
