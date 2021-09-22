@@ -47,7 +47,7 @@ func (r *Circle) perimeter() float64 {
 	return 2 * math.Pi * r.radius
 }
 
-// ######################################
+// #######################################
 
 func main() {
 	rect := Rect{4.0, 3.0}
