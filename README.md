@@ -1,6 +1,6 @@
 # My study note by Golang
 
-### 사용툴 : VSCode, Golang, HTML, CSS, JS
+##### 사용툴 : VSCode, Golang, HTML, CSS, JS
 
 ### 1. 환경 셋팅
 
