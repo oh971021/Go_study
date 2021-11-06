@@ -1,6 +1,11 @@
 # My study note by Golang
 
-### 1. <a href="http://golang.org/dl">Golang install </a>
+### 사용툴 : VSCode, Golang, HTML, CSS, JS
+
+### 1. 환경 셋팅
+
+- <a href="http://golang.org/dl">Golang install </a>
+
 ![image](https://github.com/pandora0667/TILD/blob/master/screenshot/go/windows-install/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202020-07-04%20%EC%98%A4%EC%A0%84%2012.31.07.png?raw=true)
 ![Go 설치 1](https://user-images.githubusercontent.com/84692769/138222131-6343de57-4e17-47bf-b2f2-feb1cc42551c.jpg)
 ![Go 설치 2](https://user-images.githubusercontent.com/84692769/138222140-18095dfe-d3a3-4fc8-a291-8df4caedcd0a.jpg)
