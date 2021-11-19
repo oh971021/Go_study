@@ -18,7 +18,7 @@
 ##### &nbsp;&nbsp; - 설정경로 : 제어판 > 시스템 및 보안 > 시스템 >　고급 시스템 설정 > 환경변수
 ![image](https://user-images.githubusercontent.com/84692769/138221516-7e877a8c-93b6-4d91-9915-b5c665e3aa84.png)   ![image](https://user-images.githubusercontent.com/84692769/138221539-7ab1bade-3cea-40e2-8858-6574304b1097.png) <h5> 시스템 변수에 GOROOT 설정된 것을 확인할 수 있다. </h5>
 
-<h5>시스템 변수에 Path에서 편집을 눌러서 경로 확인 가능하다 : (설치된 경로) C:\Go\bin 확인 </h5>
+<h5>시스템 변수에 Path에서 편집을 눌러서 경로 확인 가능하다 : (설치된 경로) C:\Go\bin 확인한다. </h5>
 
 ![image](https://user-images.githubusercontent.com/84692769/138221616-e9a53794-f19a-4d45-8a0f-6d81f1bb2a21.png)   ![image](https://user-images.githubusercontent.com/84692769/138221625-fdd3e3f3-4943-4d65-a2c1-b4729f7b381a.png) 
 
